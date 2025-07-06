@@ -14,6 +14,8 @@ class VolumeInfo {
   int? pageCount;
   String? printType;
   List<String>? categories;
+  num? averageRating;
+  num? ratingsCount;
   String? maturityRating;
   bool? allowAnonLogging;
   String? contentVersion;
@@ -35,6 +37,8 @@ class VolumeInfo {
     this.pageCount,
     this.printType,
     this.categories,
+    this.averageRating,
+    this.ratingsCount,
     this.maturityRating,
     this.allowAnonLogging,
     this.contentVersion,
@@ -48,7 +52,9 @@ class VolumeInfo {
 
   factory VolumeInfo.fromJson(Map<String, dynamic> json) => VolumeInfo(
     title: json['title'] as String?,
-    authors: json['authors'] as List<String>?,
+    authors: (json['authors'] as List<dynamic>?)
+        ?.map((author) => author.toString())
+        .toList(),
     publisher: json['publisher'] as String?,
     publishedDate: json['publishedDate'] as String?,
     description: json['description'] as String?,
@@ -60,7 +66,11 @@ class VolumeInfo {
         : ReadingModes.fromJson(json['readingModes'] as Map<String, dynamic>),
     pageCount: json['pageCount'] as int?,
     printType: json['printType'] as String?,
-    categories: json['categories'] as List<String>?,
+    categories: (json['categories'] as List<dynamic>?)
+        ?.map((category) => category.toString())
+        .toList(),
+    averageRating: json['averageRating'] as num?,
+    ratingsCount: json['ratingsCount'] as num?,
     maturityRating: json['maturityRating'] as String?,
     allowAnonLogging: json['allowAnonLogging'] as bool?,
     contentVersion: json['contentVersion'] as String?,
@@ -89,6 +99,8 @@ class VolumeInfo {
     'pageCount': pageCount,
     'printType': printType,
     'categories': categories,
+    'averageRating': averageRating,
+    'ratingsCount': ratingsCount,
     'maturityRating': maturityRating,
     'allowAnonLogging': allowAnonLogging,
     'contentVersion': contentVersion,

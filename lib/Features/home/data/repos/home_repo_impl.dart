@@ -34,7 +34,7 @@ class HomeRepoImpl extends HomeRepo {
   }
 
   @override
-  Future<Either<Failure, List<BookEntity>>> fetchNewestBooks() async {
+  Future<Either<Failure, List<BookEntity>>> fetchNewestBooks({int pageNumber = 0}) async {
     try {
       List<BookEntity> books;
       books = homeLocalDataSource.fetchNewestBooks();

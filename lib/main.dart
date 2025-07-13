@@ -16,7 +16,8 @@ import 'package:hive_flutter/adapters.dart';
 void main() async{
   await Hive.initFlutter();
   Hive.registerAdapter(BookEntityAdapter());
-  await Hive.openBox(kFeaturedBox);
+  setupServiceLocator();
+  await Hive.openBox<BookEntity>(kFeaturedBox);
   await Hive.openBox<BookEntity>(kNewestBox);
   Bloc.observer = SimpleBlocObserver();
 

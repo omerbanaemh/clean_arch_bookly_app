@@ -12,6 +12,7 @@ import 'package:clean_arch_bookly_app/core/utils/functions/setup_service_locator
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../Features/Splash/presentation/views/splash_view.dart';
@@ -39,8 +40,7 @@ abstract class AppRouter {
           }
           return BlocProvider(
             create: (context) => SimilarBooksCubit(
-              FetchSimilarBooksUseCase(HomeRepoImpl(homeRemoteDataSource: HomeRemoteDataSourceImpl(ApiService(Dio())), homeLocalDataSource: HomeLocalDataSourceImpl()))
-              // FetchSimilarBooksUseCase(getIt.get<HomeRepoImpl>()),
+              FetchSimilarBooksUseCase(getIt.get<HomeRepoImpl>())
             )..fetchSimilarBooks(pageNumber: 0),
             child: BookDetailsView(book: book),
           );

@@ -27,6 +27,7 @@ class SimilarBooksListViewBuilder extends StatelessWidget {
         if (state is SimilarBooksSuccess ||
             state is SimilarBooksPaginationLoading ||
             state is SimilarBooksPaginationFailure) {
+        
           return SimilarBooksListview(books: books,);
         } else if (state is SimilarBooksFailure) {
           return Text(state.errMessage);

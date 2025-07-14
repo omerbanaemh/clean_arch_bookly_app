@@ -8,6 +8,14 @@ final class NewestBooksInitial extends NewestBooksState {}
 
 final class NewestBooksLoading extends NewestBooksState {}
 
+final class NewestBooksPaginationLoading extends NewestBooksState {}
+
+final class NewestBooksPaginationFailure extends NewestBooksState {
+  final String errMessage;
+
+  NewestBooksPaginationFailure(this.errMessage);
+}
+
 final class NewestBooksSuccess extends NewestBooksState {
   final List<BookEntity> books;
 

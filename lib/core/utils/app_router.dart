@@ -1,5 +1,3 @@
-import 'package:clean_arch_bookly_app/Features/home/data/data_sources/home_local_data_source.dart';
-import 'package:clean_arch_bookly_app/Features/home/data/data_sources/home_remote_data_source.dart';
 import 'package:clean_arch_bookly_app/Features/home/data/repos/home_repo_impl.dart';
 import 'package:clean_arch_bookly_app/Features/home/domain/entities/book_entity.dart';
 import 'package:clean_arch_bookly_app/Features/home/domain/use_cases/fetch_similar_books_use_case.dart';
@@ -7,12 +5,9 @@ import 'package:clean_arch_bookly_app/Features/home/presentation/manger/similar_
 import 'package:clean_arch_bookly_app/Features/home/presentation/views/book_details_view.dart';
 import 'package:clean_arch_bookly_app/Features/home/presentation/views/home_view.dart';
 import 'package:clean_arch_bookly_app/Features/search/presentation/views/search_view.dart';
-import 'package:clean_arch_bookly_app/core/utils/api_service.dart';
 import 'package:clean_arch_bookly_app/core/utils/functions/setup_service_locator.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../Features/Splash/presentation/views/splash_view.dart';

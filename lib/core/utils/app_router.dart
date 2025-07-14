@@ -1,6 +1,11 @@
+import 'package:clean_arch_bookly_app/Features/home/data/repos/home_repo_impl.dart';
+import 'package:clean_arch_bookly_app/Features/home/domain/entities/book_entity.dart';
 import 'package:clean_arch_bookly_app/Features/home/presentation/views/book_details_view.dart';
 import 'package:clean_arch_bookly_app/Features/home/presentation/views/home_view.dart';
 import 'package:clean_arch_bookly_app/Features/search/presentation/views/search_view.dart';
+import 'package:clean_arch_bookly_app/core/utils/functions/setup_service_locator.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../Features/Splash/presentation/views/splash_view.dart';
@@ -20,7 +25,15 @@ abstract class AppRouter {
       GoRoute(path: kHomeView, builder: (context, state) => const HomeView()),
       GoRoute(
         path: kBookDetailsView,
-        builder: (context, state) => const BookDetailsView(),
+        builder: (context, state) {
+          final book = state.extra;
+
+          if(book == null || book is! BookEntity){
+            return const Scaffold(body: Center(child: Text('Book not found!')));
+          }
+          return BookDetailsView(book: book);
+
+        }
       ),
     ],
   );

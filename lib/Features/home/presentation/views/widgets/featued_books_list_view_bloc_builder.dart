@@ -30,9 +30,7 @@ class FeatuedBooksListViewBlocBuilder extends StatelessWidget {
         if (state is FeaturedBooksSuccess ||
             state is FeaturedBooksPaginationLoading ||
             state is FeaturedBooksPaginationFailure) {
-          return FeaturedBooksListView(
-            books: books,
-          );
+          return FeaturedBooksListView(books: books);
         } else if (state is FeaturedBooksFailure) {
           return Text(state.errMessage);
         } else {

@@ -6,18 +6,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-class NewsetBookListViewBuilder extends HookWidget {
+class NewsetBookListViewBuilder extends StatelessWidget {
   const NewsetBookListViewBuilder({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final  books = useState<List<BookEntity>>([]);
+    final List<BookEntity> books = [];
 
 
     return BlocConsumer<NewestBooksCubit, NewestBooksState>(
       listener: (context, state) {
         if (state is NewestBooksSuccess) {
-          books.value.addAll(state.books);
+          books.addAll(state.books);
         }
 
         if (state is NewestBooksPaginationFailure) {
@@ -32,7 +32,7 @@ class NewsetBookListViewBuilder extends HookWidget {
         if (state is NewestBooksSuccess ||
             state is NewestBooksPaginationLoading ||
             state is NewestBooksPaginationFailure) {
-          return NewsetBooksListView(books: books.value);
+          return NewsetBooksListView(books: books);
         } else if (state is NewestBooksFailure) {
           return Text(state.errMessage);
         } else {
